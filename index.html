@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title></title>
+  <style>
+  </style>
+  <link rel="stylesheet" href="styles/styles_devan.css" />
+  <script src="code.js"></script>
+  <script>
+    let player, computer, computer_locked, player_locked, gameOver, messageBoard, playAsX, playAsO, gridBox0, gridBox1, gridBox2, gridBox3, gridBox4, gridBox5, gridBox6, gridBox7, gridBox8, gridArray, compX, compY;
+    function initialize() {
+
+      const BLANK = "images/blank.png";
+      player = "";
+      computer = "";
+      computer_locked = "";
+      player_locked = "";
+      compX = 999;
+      compY = 999;
+
+      gameOver = false;
+
+      messageBoard = document.getElementById("messageOutPut");
+
+
+      playAsX = document.getElementById("decidex");
+      playAsO = document.getElementById("decideo");
+
+      gridBox0 = document.getElementById("grid0");
+      gridBox1 = document.getElementById("grid1");
+      gridBox2 = document.getElementById("grid2");
+      gridBox3 = document.getElementById("grid3");
+      gridBox4 = document.getElementById("grid4");
+      gridBox5 = document.getElementById("grid5");
+      gridBox6 = document.getElementById("grid6");
+      gridBox7 = document.getElementById("grid7");
+      gridBox8 = document.getElementById("grid8");
+
+      gridArray = [
+        [gridBox0, gridBox1, gridBox2],
+        [gridBox3, gridBox4, gridBox5],
+        [gridBox6, gridBox7, gridBox8]
+      ];
+
+      gridArray[0][0].src = BLANK;
+      gridArray[0][1].src = BLANK;
+      gridArray[0][2].src = BLANK;
+      gridArray[1][0].src = BLANK;
+      gridArray[1][1].src = BLANK;
+      gridArray[1][2].src = BLANK;
+      gridArray[2][0].src = BLANK;
+      gridArray[2][1].src = BLANK;
+      gridArray[2][2].src = BLANK;
+
+      //const gridArray = gridArray.map(x.src => BLANK);
+
+      playAsX.addEventListener("click", playX);
+      playAsO.addEventListener("click", playO);
+
+      playAsX.style.display = 'initial';
+      playAsO.style.display = 'initial';
+    }
+  </script>
+</head>
+
+<body onload="initialize();">
+
+  <div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="overlay-content">
+      <div id="messageOutPut" style="text-align: center;font-size: xxx-large;"> </div>
+
+    </div>
+  </div>
+
+
+
+
+  <div class="titleDiv">Two-Layer Tic Tac Toe
+    </br>
+
+
+    <button onclick="initialize();" id="Reset">Reset the game</button>
+
+    <div class="dropdown">
+      <button class="dropbtn">Hover Over Me To See Rules</button>
+      <div class="dropdown-content">
+        <ul>
+          <li>Click on an empty space to claim it.</li>
+          <li>Three in a row wins!</li>
+          <li>Click on a space again to permanently lock it in! No one else can get it once it's locked in! (Marked in Red)</li>
+          <li>Click on your opponent's space in order to take their spot from them!</li>
+          <li>You can't immediately take your opponent's spot! You'll have to wait a turn first!</li>
+        </ul>
+      </div>
+    </div>
+
+    <button id="decidex">Play as X</button>
+    <button id="decideo">Play as O</button>
+
+
+  </div> <br />
+
+  <p></p>
+
+  <table>
+    <tr>
+      <th colspan="3">
+        <div id="won" </div>
+      </th>
+    </tr>
+
+    <tr>
+      <th> <img id="grid0" onclick="seriesWinSequence(0,0,player)" src="images/player_locked.png"
+          style="text-align:bottom;">
+        <br />
+      </th>
+      <th> <img id="grid1" onclick="seriesWinSequence(0,1, player)" src="images/player.png" style="text-align:bottom;">
+        <br />
+      </th>
+      <th> <img id="grid2" onclick="seriesWinSequence(0,2,player)" src="images/blank.png" style="text-align:bottom;">
+        <br />
+      </th>
+    </tr>
+    <tr>
+      <th> <img id="grid3" onclick="seriesWinSequence(1,0,player)" src="images/computer_locked.png"
+          style="text-align:bottom;">
+        <br />
+      </th>
+      <th> <img id="grid4" onclick="seriesWinSequence(1,1,player)" src="images/blank.png" style="text-align:bottom;">
+        <br />
+      </th>
+      <th> <img id="grid5" onclick="seriesWinSequence(1,2,player)" src="images/computer.png" style="text-align:bottom;">
+        <br />
+      </th>
+
+    </tr>
+    <tr>
+      <th> <img id="grid6" onclick="seriesWinSequence(2,0,player)" src="images/computer_locked.png"
+          style="text-align:bottom;">
+        <br />
+      </th>
+      <th> <img id="grid7" onclick="seriesWinSequence(2,1,player)" src="images/player_locked.png"
+          style="text-align:bottom;">
+        <br />
+      </th>
+      <th> <img id="grid8" onclick="seriesWinSequence(2,2,player)" src="images/player_locked.png"
+          style="text-align:bottom;">
+        <br />
+      </th>
+
+    </tr>
+
+  </table>
+
+</body>
+
+</html>
